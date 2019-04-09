@@ -1,0 +1,21 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+    name:
+        label: Name
+    bio:
+        label: Bio
+    avatar:
+        label: Avatar
+        type: fileupload
+        mode: image
+        imageWidth: 200
+        imageHeight: 200
+
+
+

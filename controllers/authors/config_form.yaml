@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Author
+
+# Model Form Field configuration
+form: $/suresoftware/powerblog/models/author/fields.yaml
+
+# Model Class name
+modelClass: SureSoftware\PowerBlog\Models\Author
+
+# Default redirect location
+defaultRedirect: suresoftware/powerblog/authors
+
+# Create page
+create:
+    title: Create Author
+    redirect: suresoftware/powerblog/authors/update/:id
+    redirectClose: suresoftware/powerblog/authors
+
+# Update page
+update:
+    title: Edit Author
+    redirect: suresoftware/powerblog/authors
+    redirectClose: suresoftware/powerblog/authors
+
+# Preview page
+preview:
+    title: Preview Author

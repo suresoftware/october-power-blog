@@ -1,0 +1,7 @@
+1.0.1: First version of PowerBlog
+1.0.2:
+    - 'Run Migrations'
+    - create_authors_table.php
+1.0.3:
+    - 'Update Posts Table'
+    - alter_posts_add_author_id.php
