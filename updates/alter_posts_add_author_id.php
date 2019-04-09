@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: emmacampbell
- * Date: 5/04/19
- * Time: 11:19 AM
- */
 
 namespace SureSoftware\PowerBlog\Updates;
 
