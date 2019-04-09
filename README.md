@@ -1,1 +1,2 @@
-powerblog
+Power Blog an OctoberCMS Plugin
+=============
