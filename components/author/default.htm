@@ -1,12 +1,14 @@
 {% set author = __SELF__.author %}
 
-<div class="author-avatar">
-    <img
-        src="{{ author.avatar.path }}"
-        alt="{{ author.avatar.description }}"
-        style="max-width: 60px; border-radius: 50%" />
-</div>
+<div class="author-component">
+    <div class="author-avatar marg-20">
+        <img
+                src="{{ author.avatar.path }}"
+                alt="{{ author.avatar.description }}"
+                style="width: 80px; border-radius: 50%" />
+    </div>
 
-<div class="author-bio">
-    <p><span class="author-name">{{ author.name }}</span> {{ author.bio }}</p>
+    <div class="author-bio">
+        <p><b class="author-name">{{ author.name }}</b> {{ author.bio }}</p>
+    </div>
 </div>
