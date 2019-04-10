@@ -1,29 +1,46 @@
 <?php namespace SureSoftware\PowerBlog\Components;
 
 use Cms\Classes\ComponentBase;
-use SureSoftware\PowerBlog\Models\Author as Author;
+use Illuminate\Support\Facades\Log;
+use Rainlab\Blog\Models\Post;
 
 class Author extends ComponentBase
 {
+    public $author;
+
     public function componentDetails()
     {
         return [
             'name'        => 'Author Component',
-            'description' => 'A simple component for adding authors to blog posts'
+            'description' => 'A simple component for adding an author to a blog post'
         ];
     }
 
     public function defineProperties()
     {
-        return [
-            'name' => 'name',
-            'bio' => 'bio',
-            'avatar' => 'avatar'
-        ];
+        return [];
     }
 
-    public function authors()
+    public function onRun()
     {
-        return Author::all();
+        $this->author = $this->getAuthor();
+    }
+
+    public function getAuthor()
+    {
+        $post = $this->page['post'];
+
+        if(empty($post)) return null;
+
+        $author_id = $post->powerblog_author_id;
+        $author = \SureSoftware\PowerBlog\Models\Author::with('avatar')->find($author_id);
+
+        Log::info($author);
+
+        if($author) {
+            return $author;
+        }
+
+        return null;
     }
 }
