@@ -1,6 +1,8 @@
 <?php namespace SureSoftware\PowerBlog\Controllers;
 
 use Backend\Classes\Controller;
+use Illuminate\Http\Request;
+use Rainlab\Blog\Models\Post;
 
 /**
  * Authors Back-end Controller
@@ -9,8 +11,8 @@ class QuillController extends Controller {
 
     public function storeDelta(Request $request)
     {
-        //dd($request->input('doc'));
-        //get post id
-        // get entire delta from update method - powerblog delta
+        $post = Post::find($request->id);
+        $post->powerblog_delta = $request->doc;
+        $post->save();
     }
 }

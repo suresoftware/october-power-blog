@@ -68,6 +68,8 @@ $(document).on('ready', function() {
 
             // Send entire document
             $.post('/suresoftware/powerblog/quill', {
+                // Get id from slug
+                id: window.location.href.split('/').reverse()[0],
                 doc: JSON.stringify(quill.getContents())
             });
             change = new Delta();
