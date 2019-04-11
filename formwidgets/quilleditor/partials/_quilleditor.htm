@@ -6,6 +6,9 @@
 
 <?php else: ?>
 
+<!-- Create the autosave indicator -->
+<div id="quill-autosave-indicator"></div>
+
 <!-- Create the editor container -->
 <div id="scrolling-container">
     <input type="hidden"
@@ -17,6 +20,7 @@
     <input type="hidden"
            id="quill-delta"
            name="Post[powerblog_delta]"
+           value="<?= $value ?>"
     />
 
     <div id="quill-editor"></div>

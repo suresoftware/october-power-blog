@@ -14,5 +14,6 @@ class QuillController extends Controller {
         $post = Post::find($request->id);
         $post->powerblog_delta = $request->doc;
         $post->save();
+        return response()->json(['message' => 'saved'], 200);
     }
 }

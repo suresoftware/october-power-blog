@@ -5,3 +5,8 @@
 #quill-editor {
     height: 100vh;
 }
+
+#quill-autosave-indicator {
+    display: inline-block;
+    float: right;
+}

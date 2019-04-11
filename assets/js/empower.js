@@ -44,6 +44,7 @@ var toolbarOptions = [
 ];
 
 $(document).on('ready', function() {
+    // var serialise the delta in here so the editor can grab it as a value??
     var quill = new Quill('#quill-editor', {
         modules: {
             toolbar: toolbarOptions
@@ -57,6 +58,7 @@ $(document).on('ready', function() {
     var Delta = Quill.import('delta');
     var change = new Delta();
     quill.on('text-change', function(delta) {
+        $('#quill-autosave-indicator').text('Unsaved changes.');
         change = change.compose(delta);
         $('#quill-delta').val(JSON.stringify(change));
     });
@@ -65,12 +67,16 @@ $(document).on('ready', function() {
     setInterval(function () {
         if (change.length() > 0) {
             console.log('Saving changes', change);
+            $('#quill-autosave-indicator').text('Autosaving...');
 
             // Send entire document
             $.post('/suresoftware/powerblog/quill', {
                 // Get id from slug
                 id: window.location.href.split('/').reverse()[0],
                 doc: JSON.stringify(quill.getContents())
+            }, function(data) {
+                console.log(data);
+                $('#quill-autosave-indicator').text('Post Autosaved.');
             });
             change = new Delta();
         }
