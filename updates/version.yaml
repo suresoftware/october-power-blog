@@ -5,3 +5,6 @@
 1.0.3:
     - 'Update Posts Table'
     - alter_posts_add_author_id.php
+1.0.4:
+    - 'Update Posts to add Quill Deltas'
+    - alter_posts_add_delta.php

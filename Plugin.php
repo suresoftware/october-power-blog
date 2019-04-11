@@ -36,12 +36,23 @@ class Plugin extends PluginBase
 
         \Event::listen('backend.form.extendFields', function ($widget) {
             if (PluginManager::instance()->hasPlugin('RainLab.Blog') && $widget->model instanceof \RainLab\Blog\Models\Post) {
+                $widget->addCss('/plugins/suresoftware/powerblog/assets/css/prettify.css');
+                $widget->addCss('https://cdn.quilljs.com/1.3.6/quill.snow.css');
+                $widget->addJs('/plugins/suresoftware/powerblog/assets/js/empower.js');
+                $widget->addJs('https://cdn.quilljs.com/1.3.6/quill.js');
+
                 $widget->addFields([
                     'powerblog_author' => [
                         'tab' => 'Power Blog',
                         'label' => 'Author',
                         'type' => 'relation',
                         'span' => 'left',
+                    ],
+                    'powerblog_delta' => [
+                        'tab' => 'Power Blog',
+                        'label' => 'Quill Editor',
+                        'type' => '\SureSoftware\PowerBlog\FormWidgets\QuillEditor',
+                        'stretch' => true,
                     ],
                 ], 'secondary');
             }
@@ -69,6 +80,19 @@ class Plugin extends PluginBase
     {
         return [
             'SureSoftware\PowerBlog\Components\Author' => 'Author',
+        ];
+    }
+
+    /**
+     * Registers any back-end form widgets implemented in this plugin.
+     *
+     * @return array
+     *
+     */
+    public function registerFormWidgets()
+    {
+        return [
+            'SureSoftware\PowerBlog\FormWidgets\QuillEditor' => 'powerblog_quill_editor'
         ];
     }
 
