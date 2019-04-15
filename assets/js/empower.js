@@ -59,7 +59,7 @@ $(document).on('ready', function() {
     var change = new Delta();
     quill.on('text-change', function(delta) {
         $('#quill-autosave-indicator').text('Unsaved Changes');
-        change = change.compose(delta);
+        change = quill.getContents();
         $('#quill-delta').val(JSON.stringify(change));
     });
 
