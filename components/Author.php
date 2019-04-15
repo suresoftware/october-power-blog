@@ -12,7 +12,7 @@ class Author extends ComponentBase
     {
         return [
             'name'        => 'Author Component',
-            'description' => 'A simple component for adding an author to a blog post'
+            'description' => 'Adds an author module to the blog post.'
         ];
     }
 

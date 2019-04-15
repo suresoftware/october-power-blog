@@ -45,8 +45,7 @@ class QuillEditor extends FormWidgetBase
      */
     public function loadAssets()
     {
-        $this->addCss('css/quilleditor.css', 'SureSoftware.PowerBlog');
-        $this->addJs('js/quilleditor.js', 'SureSoftware.PowerBlog');
+
     }
 
     /**

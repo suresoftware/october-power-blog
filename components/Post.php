@@ -21,7 +21,7 @@ class Post extends ComponentBase
     {
         return [
             'name'        => 'Power Blog Post Component',
-            'description' => 'Render Power Blog Post Content'
+            'description' => 'Renders Power Blog post content on the page.'
         ];
     }
 
@@ -59,6 +59,14 @@ class Post extends ComponentBase
         if (empty($this->post)) {
             $this->post = $this->page['post'] = $this->loadPost();
         }
+
+        // PHP Quill Renderer
+        $parser = new \DBlackborough\Quill\Parser\Html();
+        $renderer = new \DBlackborough\Quill\Renderer\Html();
+
+        $parser->load($this->post->powerblog_delta)->parse();
+
+        $this->post->html_content = $renderer->load($parser->deltas())->render();
     }
 
     protected function loadPost()

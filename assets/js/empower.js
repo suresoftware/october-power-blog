@@ -24,16 +24,16 @@ $(document).on('ajaxSuccess', '#post-form', function(event, context, data) {
  */
 
 var toolbarOptions = [
-    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+    ['bold', 'italic', 'underline', 'strike'],          // toggled buttons
     ['blockquote'],
 
-    [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-    [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+    [{ 'header': 1 }, { 'header': 2 }],                 // custom button values
+    [{ 'script': 'sub'}, { 'script': 'super' }],        // superscript/subscript
 
-    [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+    [{ 'size': ['small', false, 'large', 'huge'] }],    // custom dropdown
     [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-    [ 'link', 'image', 'video', 'formula' ],          // add's image support
-    ['clean']                                         // remove formatting button
+    [ 'link', 'image', 'video', 'formula' ],            // add's image support
+    ['clean']                                           // remove formatting button
 ];
 
 $(document).on('ready', function() {
