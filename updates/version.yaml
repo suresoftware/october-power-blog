@@ -8,3 +8,6 @@
 1.0.4:
     - 'Update Posts to add Quill Deltas'
     - alter_posts_add_delta.php
+1.0.5:
+    - 'Create Settings Table'
+    - create_settings_table.php
