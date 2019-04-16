@@ -1,0 +1,18 @@
+
+<div class="container">
+    <row>
+        <div>
+            <p>Posts Total: <span><?= $this->vars['posts']->count() ?></span></p>
+        </div>
+        <input
+                type="hidden"
+                id="quill-importer"
+        />
+        <p></p>
+        <button id="import">Import Posts</button>
+    </row>
+</div>
+<script>
+    window.posts = <?= $posts ?>;
+</script>
+
