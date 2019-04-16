@@ -61,13 +61,18 @@ class Post extends ComponentBase
         }
 
         // PHP Quill Renderer
-        $parser = new \DBlackborough\Quill\Parser\Html();
-        $renderer = new \DBlackborough\Quill\Renderer\Html();
-
-        $parser->load($this->post->powerblog_delta)->parse();
-
-        $this->post->html_content = $renderer->load($parser->deltas())->render();
+        if (!empty($this->post->powerblog_delta)) {
+            try {
+                $parser = new \DBlackborough\Quill\Parser\Html();
+                $renderer = new \DBlackborough\Quill\Renderer\Html();
+                $parser->load($this->post->powerblog_delta)->parse();
+            } catch (\Exception $e) {
+                echo $e->getMessage();
+            }
+            $this->post->html_content = $renderer->load($parser->deltas())->render();
+        }
     }
+
 
     protected function loadPost()
     {
