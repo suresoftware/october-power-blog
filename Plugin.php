@@ -53,7 +53,6 @@ class Plugin extends PluginBase
                         'tab' => 'Power Blog',
                         'label' => 'Quill Editor',
                         'type' => '\SureSoftware\PowerBlog\FormWidgets\QuillEditor',
-                        'stretch' => true,
                     ],
                 ], 'secondary');
             }

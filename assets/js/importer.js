@@ -7,6 +7,14 @@ let index = 0;
 let posts = '';
 let quill = '';
 
+// Toggle import button so it can't be clicked a hundred times
+function toggleImportButton() {
+    $('#import').prop("disabled", function(i, v) {
+        return !v;
+    })
+}
+
+
  $(window).ready( function() {
 
      // Ready the quill editor
@@ -24,17 +32,20 @@ let quill = '';
 
      // Send initial post
       $('#import').click( function() {
-          index = 0;
+          index = 0; // do I need this? at click should it always start from 0?
           posts = window.posts;
           importPost(index);
+          toggleImportButton(); // disable button
      });
  });
 
  // Import posts recursively
  function importPost(index) {
      let post = posts[index];
+
      // Paste HTML contents from post into quill editor
      quill.clipboard.dangerouslyPasteHTML(post.content, 'api'); //seems to return null if dangerous stuff in it
+
      // Retrieve from the editor as a Delta
      let Delta = quill.getContents();
 
@@ -53,7 +64,7 @@ let quill = '';
          if(index < posts.length) {
              return importPost(index);
          } else {
-             console.log('success!');
+             $('#import-status').text('Import Successful!');
              return index;
          }
      });

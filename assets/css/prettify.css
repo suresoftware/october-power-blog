@@ -6,6 +6,10 @@
     height: 100vh;
 }
 
+#scrolling-container {
+    overflow-y: auto;
+}
+
 #quill-autosave-indicator {
     display: inline-block;
     float: right;

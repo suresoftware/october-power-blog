@@ -2,7 +2,9 @@
 <div class="container">
     <row>
         <div>
-            <p>Posts Total: <span><?= $posts->count() ?></span></p>
+            <h2>Import Posts</h2>
+            <p>This tool converts all existing post content to Power Blog deltas.</p>
+            <p id="import-status">Total Posts: <span><?= $posts->count() ?></span></p>
         </div>
         <input
                 type="hidden"
@@ -13,7 +15,7 @@
         <div class="progress">
             <div id="progress" class="progress-bar" style="width: 0" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
-        <button id="import">Import All Posts</button>
+        <button id="import">Import Posts</button>
     </row>
 </div>
 <script>
