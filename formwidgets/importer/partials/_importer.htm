@@ -2,14 +2,18 @@
 <div class="container">
     <row>
         <div>
-            <p>Posts Total: <span><?= $this->vars['posts']->count() ?></span></p>
+            <p>Posts Total: <span><?= $posts->count() ?></span></p>
         </div>
         <input
                 type="hidden"
                 id="quill-importer"
+
         />
-        <p></p>
-        <button id="import">Import Posts</button>
+
+        <div class="progress">
+            <div id="progress" class="progress-bar" style="width: 0" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <button id="import">Import All Posts</button>
     </row>
 </div>
 <script>

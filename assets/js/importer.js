@@ -3,30 +3,58 @@
  * Quill Importer
  */
 
-// import markdown post->content,
-// convert to html,
-// import to quill to convert to delta,
-// store in database as json
-//
+let index = 0;
+let posts = '';
+let quill = '';
+
  $(window).ready( function() {
-     // console.log('hello');
 
-     //ready the quill editor
-     var quill = new Quill('#quill-importer', {
-
+     // Ready the quill editor
+      quill = new Quill('#quill-importer', {
+         modules: {
+             clipboard: true,
+         },
+         readOnly: true,
      });
 
-     //var Delta = Quill.import('post.content');
-     console.log(window.posts);
+     // Custom matcher to interpret <b> tags as bold
+     quill.clipboard.addMatcher('B', function(node, delta) {
+         return delta.compose(new Delta().retain(delta.length(), { bold: true }));
+     });
 
-      //button click
+     // Send initial post
       $('#import').click( function() {
-          console.log('click!');
-     //     var postContents = $('content');
-     //     for(var ) {
-     //
-     //     }
-     })
+          index = 0;
+          posts = window.posts;
+          importPost(index);
+     });
  });
 
+ // Import posts recursively
+ function importPost(index) {
+     let post = posts[index];
+     // Paste HTML contents from post into quill editor
+     quill.clipboard.dangerouslyPasteHTML(post.content, 'api'); //seems to return null if dangerous stuff in it
+     // Retrieve from the editor as a Delta
+     let Delta = quill.getContents();
 
+     // Increment index
+     index = ++index;
+
+     // Update progress bar
+     $('#progress').css("width", (100/posts.length) * index + '%');
+
+     // API call to store as post->powerblog_delta
+     $.post('/suresoftware/powerblog/quill', {
+         id: post.id,
+         doc: JSON.stringify(Delta),
+     }, function () {
+         // If index is valid, keep going
+         if(index < posts.length) {
+             return importPost(index);
+         } else {
+             console.log('success!');
+             return index;
+         }
+     });
+ }
