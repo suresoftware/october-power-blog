@@ -33,11 +33,12 @@ class Importer extends WidgetBase
 
     public function prepareHtml()
     {
-        $posts = Post::select('content', 'id')->get(); // Should I make it so that it only returns the posts that have not been imported yet?
+        $posts = Post::select('content', 'id')->where('powerblog_delta', '')->get();
         foreach ($posts as $post) {
-            if((empty($post->powerblog_delta)) && ($post->content)) {
-                $post->content = Markdown::parseSafe($post->content); // Should I use parseSafe or parse?
+            {
+                $post->content = Markdown::parseSafe($post->content);
             }
+
         }
         return $posts;
 

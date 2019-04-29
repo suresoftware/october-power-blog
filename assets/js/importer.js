@@ -37,6 +37,10 @@ function toggleImportButton() {
           importPost(index);
           toggleImportButton(); // disable button
      });
+      console.log(window.posts);
+      if(window.posts.length < 1) {
+          $("#import").attr("disabled", true);
+      }
  });
 
  // Import posts recursively
