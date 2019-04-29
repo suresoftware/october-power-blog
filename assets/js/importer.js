@@ -14,7 +14,6 @@ function toggleImportButton() {
     })
 }
 
-
  $(window).ready( function() {
 
      // Ready the quill editor
@@ -32,7 +31,7 @@ function toggleImportButton() {
 
      // Send initial post
       $('#import').click( function() {
-          index = 0; // do I need this? at click should it always start from 0?
+          index = 0;
           posts = window.posts;
           importPost(index);
           toggleImportButton(); // disable button

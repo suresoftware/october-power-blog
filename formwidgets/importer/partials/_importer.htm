@@ -9,7 +9,6 @@
         <input
                 type="hidden"
                 id="quill-importer"
-
         />
 
         <div class="progress">
@@ -17,6 +16,7 @@
         </div>
         <button id="import">Import Posts</button>
     </row>
+    <a href="<?= Backend::url('rainlab/blog/posts') ?>"><button>Go To Posts</button></a>
 </div>
 <script>
     window.posts = <?= $posts ?>;

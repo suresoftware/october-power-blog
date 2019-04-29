@@ -38,6 +38,7 @@ var toolbarOptions = [
 
 $(document).on('ready', function() {
 
+    // Ready the Quill editor
     var quill = new Quill('#quill-editor', {
         modules: {
             toolbar: toolbarOptions

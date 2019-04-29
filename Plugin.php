@@ -66,6 +66,14 @@ class Plugin extends PluginBase
      */
     public function boot()
     {
+        // Checks for empty powerblog_deltas (unimported posts) and removes access to Blog until import is complete.
+        $posts = Post::select()->where('powerblog_delta', null)->orWhere('powerblog_delta', '')->get();
+        if(count($posts) > 0) {
+            \Event::listen('backend.menu.extendItems', function($manager) {
+                $manager->removeMainMenuItem('RainLab.Blog', 'blog');
+            });
+        }
+
         Post::extend(function($model) {
             $model->belongsTo['powerblog_author'] = ['SureSoftware\PowerBlog\Models\Author'];
         });
@@ -98,6 +106,11 @@ class Plugin extends PluginBase
         ];
     }
 
+    /**
+     * Registers any back-end settings.
+     *
+     * @return array
+     */
 
     public function registerSettings()
     {
@@ -121,14 +134,7 @@ class Plugin extends PluginBase
      */
     public function registerPermissions()
     {
-        return []; // Remove this line to activate
-
-//        return [
-//            'suresoftware.powerblog.some_permission' => [
-//                'tab' => 'Power Blog',
-//                'label' => 'Some permission'
-//            ],
-//        ];
+        return [];
     }
 
     /**
@@ -138,8 +144,6 @@ class Plugin extends PluginBase
      */
     public function registerNavigation()
     {
-//        return []; // Remove this line to activate
-
         return [
             'powerblog' => [
                 'label'       => 'Power Blog',
