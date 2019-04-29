@@ -33,15 +33,16 @@ class Importer extends WidgetBase
 
     public function prepareHtml()
     {
-        $posts = Post::select('content', 'id')->where('powerblog_delta', '')->get();
+        $posts = Post::select('content', 'id')
+            ->where('powerblog_delta', null)
+            ->orWhere('powerblog_delta', '')
+            ->get();
         foreach ($posts as $post) {
             {
                 $post->content = Markdown::parseSafe($post->content);
             }
-
         }
         return $posts;
-
     }
 
     /**
