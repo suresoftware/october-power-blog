@@ -3,6 +3,8 @@
 use BackendAuth;
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
+use DBlackborough\Quill\Parser\Html as HtmlParser;
+use DBlackborough\Quill\Renderer\Html as RenderHtml;
 use RainLab\Blog\Models\Post as BlogPost;
 
 class Post extends ComponentBase
@@ -20,7 +22,7 @@ class Post extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'Power Blog Post Component',
+            'name' => 'Power Blog Post',
             'description' => 'Renders Power Blog post content on the page.'
         ];
     }
@@ -29,16 +31,16 @@ class Post extends ComponentBase
     {
         return [
             'slug' => [
-                'title'       => 'rainlab.blog::lang.settings.post_slug',
+                'title' => 'rainlab.blog::lang.settings.post_slug',
                 'description' => 'rainlab.blog::lang.settings.post_slug_description',
-                'default'     => '{{ :slug }}',
-                'type'        => 'string',
+                'default' => '{{ :slug }}',
+                'type' => 'string',
             ],
             'categoryPage' => [
-                'title'       => 'rainlab.blog::lang.settings.post_category',
+                'title' => 'rainlab.blog::lang.settings.post_category',
                 'description' => 'rainlab.blog::lang.settings.post_category_description',
-                'type'        => 'dropdown',
-                'default'     => 'blog/category',
+                'type' => 'dropdown',
+                'default' => 'blog/category',
             ],
         ];
     }
@@ -63,8 +65,8 @@ class Post extends ComponentBase
         // PHP Quill Renderer
         if (!empty($this->post->powerblog_delta)) {
             try {
-                $parser = new \DBlackborough\Quill\Parser\Html();
-                $renderer = new \DBlackborough\Quill\Renderer\Html();
+                $parser = new HtmlParser();
+                $renderer = new RenderHtml();
                 $parser->load($this->post->powerblog_delta)->parse();
             } catch (\Exception $e) {
                 echo $e->getMessage();
@@ -94,7 +96,7 @@ class Post extends ComponentBase
          * Add a "url" helper attribute for linking to each category
          */
         if ($post && $post->categories->count()) {
-            $post->categories->each(function($category) {
+            $post->categories->each(function ($category) {
                 $category->setUrl($this->categoryPage, $this->controller);
             });
         }
@@ -128,7 +130,7 @@ class Post extends ComponentBase
 
         $post->setUrl($postPage, $this->controller);
 
-        $post->categories->each(function($category) {
+        $post->categories->each(function ($category) {
             $category->setUrl($this->categoryPage, $this->controller);
         });
 

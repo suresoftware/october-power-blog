@@ -1,28 +1,26 @@
 <?php if ($this->previewMode): ?>
 
-    <div class="form-control">
-        <?= $value ?>
-    </div>
+<div class="form-control">
+    <?= $value ?>
+</div>
 
 <?php else: ?>
 
-<!-- Create the autosave indicator -->
-<div id="quill-autosave-indicator"></div>
+<div id="quill-form">
+    <!-- Create the autosave indicator -->
+    <div id="quill-autosave-indicator" class="saved">Post Saved</div>
 
-<!-- Create the editor container -->
-<div id="scrolling-container">
-    <input type="hidden"
-           id="quill-content"
-           name="Post[content]"
-           value="Please use the PowerBlog Component to display posts."
+    <!-- Create the editor container -->
+    <div id="quill-container">
 
-    />
-    <input type="hidden"
-           id="quill-delta"
-           name="Post[powerblog_delta]"
-           value="<?= e($delta) ?>"
-    />
+        <input type="hidden"
+               id="quill-delta"
+               name="Post[powerblog_delta]"
+               value="<?= e($delta) ?>"
+        />
 
-    <div id="quill-editor"></div>
+        <div id="quill-editor"></div>
+    </div>
 </div>
+
 <?php endif ?>

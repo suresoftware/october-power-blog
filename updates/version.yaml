@@ -1,13 +1,12 @@
 1.0.1: First version of PowerBlog
 1.0.2:
-    - 'Run Migrations'
-    - create_authors_table.php
+  - 'Run Migrations'
+  - create_authors_table.php
 1.0.3:
-    - 'Update Posts Table'
-    - alter_posts_add_author_id.php
+  - 'Update Posts Table'
+  - alter_posts_add_author_id.php
 1.0.4:
-    - 'Update Posts to add Quill Deltas'
-    - alter_posts_add_delta.php
-1.0.5:
-    - 'Create Settings Table'
-    - create_settings_table.php
+  - 'Update Posts to add Quill Deltas'
+  - alter_posts_add_delta.php
+1.1.0:
+  - 'Cleaned up codebase for public release'

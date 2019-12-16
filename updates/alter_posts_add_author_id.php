@@ -14,12 +14,10 @@ class AlterPostsAddAuthorId extends Migration
             return;
         }
 
-        Schema::table('rainlab_blog_posts', function($table)
-        {
+        Schema::table('rainlab_blog_posts', function ($table) {
             $table->unsignedInteger('powerblog_author_id')->nullable();
         });
-        Schema::table('rainlab_blog_posts', function($table)
-        {
+        Schema::table('rainlab_blog_posts', function ($table) {
             $table->foreign('powerblog_author_id')->references('id')->on('suresoftware_powerblog_authors');
         });
     }

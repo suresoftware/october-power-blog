@@ -12,6 +12,8 @@ use System\Classes\SettingsManager;
  */
 class Plugin extends PluginBase
 {
+    public $require = ['RainLab.Blog'];
+
     /**
      * Returns information about this plugin.
      *
@@ -20,10 +22,10 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name'        => 'Power Blog',
+            'name' => 'Power Blog',
             'description' => 'This blog plugin is built with Quill for an enhanced writing experience. More features to come.',
-            'author'      => 'Sure Software',
-            'icon'        => 'icon-leaf'
+            'author' => 'Sure Software',
+            'icon' => 'icon-leaf'
         ];
     }
 
@@ -66,15 +68,16 @@ class Plugin extends PluginBase
      */
     public function boot()
     {
-        // Checks for empty powerblog_deltas (unimported posts) and removes access to Blog until import is complete.
+        // Checks for empty powerblog_deltas (unconverted posts) and removes access to Blog until conversion is complete.
         $posts = Post::select()->where('powerblog_delta', null)->orWhere('powerblog_delta', '')->get();
-        if(count($posts) > 0) {
-            \Event::listen('backend.menu.extendItems', function($manager) {
+        if (count($posts) > 0) {
+            \Event::listen('backend.menu.extendItems', function ($manager) {
                 $manager->removeMainMenuItem('RainLab.Blog', 'blog');
             });
+            \Flash::warning('You must convert your posts into Power Blog posts in order to edit and access your posts.');
         }
 
-        Post::extend(function($model) {
+        Post::extend(function ($model) {
             $model->belongsTo['powerblog_author'] = ['SureSoftware\PowerBlog\Models\Author'];
         });
     }
@@ -102,7 +105,8 @@ class Plugin extends PluginBase
     {
         return [
             'SureSoftware\PowerBlog\FormWidgets\QuillEditor' => 'powerblog_quill_editor',
-            'SureSoftware\PowerBlog\FormWidgets\QuillImporter' => 'powerblog_importer'
+            'SureSoftware\PowerBlog\FormWidgets\PowerConverter' => 'powerblog_converter',
+            'SureSoftware\PowerBlog\FormWidgets\AvatarUploader' => 'powerblog_avatar_uploader'
         ];
     }
 
@@ -114,17 +118,7 @@ class Plugin extends PluginBase
 
     public function registerSettings()
     {
-        return [
-            'settings' => [
-                'label' => 'Power Blog Settings',
-                'description' => 'Configure Power Blog',
-                'icon' => 'icon-cog',
-                'category' => SettingsManager::CATEGORY_MYSETTINGS,
-                'permissions' => ['suresoftware.powerblog.settings.edit'],
-                'class' => 'SureSoftware\PowerBlog\Models\Settings',
-                'order' => 100
-            ]
-        ];
+        return [];
     }
 
     /**
@@ -146,30 +140,30 @@ class Plugin extends PluginBase
     {
         return [
             'powerblog' => [
-                'label'       => 'Power Blog',
-                'url'         => Backend::url('suresoftware/powerblog/authors'),
-                'icon'        => 'icon-pencil',
+                'label' => 'Power Blog',
+                'url' => Backend::url('suresoftware/powerblog/authors'),
+                'icon' => 'icon-pencil',
                 'permissions' => ['suresoftware.powerblog.*'],
-                'order'       => 500,
+                'order' => 500,
 
                 'sideMenu' => [
                     'new_author' => [
-                        'label'       => 'New Author',
-                        'icon'        => 'icon-plus',
-                        'url'         => Backend::url('suresoftware/powerblog/authors/create'),
+                        'label' => 'New Author',
+                        'icon' => 'icon-plus',
+                        'url' => Backend::url('suresoftware/powerblog/authors/create'),
                         'permissions' => ['suresoftware.powerblog.*'],
                     ],
 
                     'authors' => [
-                        'label'       => 'Authors',
-                        'icon'        => 'icon-users',
-                        'url'         => Backend::url('suresoftware/powerblog/authors'),
+                        'label' => 'Authors',
+                        'icon' => 'icon-users',
+                        'url' => Backend::url('suresoftware/powerblog/authors'),
                         'permissions' => ['suresoftware.powerblog.*'],
                     ],
-                    'importer' => [
-                        'label'       => 'Import Posts',
-                        'icon'        => 'icon-cog',
-                        'url'         => Backend::url('suresoftware/powerblog/settings'),
+                    'converter' => [
+                        'label' => 'Convert Posts',
+                        'icon' => 'icon-cog',
+                        'url' => Backend::url('suresoftware/powerblog/converter'),
                         'permissions' => ['suresoftware.powerblog.*'],
                     ]
                 ]

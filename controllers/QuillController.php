@@ -7,7 +7,8 @@ use Rainlab\Blog\Models\Post;
 /**
  * Authors Back-end Controller
  */
-class QuillController extends Controller {
+class QuillController extends Controller
+{
 
     public function storeDelta(Request $request)
     {

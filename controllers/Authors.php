@@ -23,6 +23,7 @@ class Authors extends Controller
 
         BackendMenu::setContext('SureSoftware.PowerBlog', 'powerblog', 'authors');
     }
+
     public function index()
     {
         $this->vars['AuthorsTotal'] = Author::count();

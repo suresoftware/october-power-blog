@@ -8,7 +8,7 @@ class CreateAuthorsTable extends Migration
 {
     public function up()
     {
-        Schema::create('suresoftware_powerblog_authors', function(Blueprint $table) {
+        Schema::create('suresoftware_powerblog_authors', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->timestamps();

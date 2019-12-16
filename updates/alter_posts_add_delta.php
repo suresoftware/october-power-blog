@@ -14,8 +14,7 @@ class AlterPostsAddDelta extends Migration
             return;
         }
 
-        Schema::table('rainlab_blog_posts', function($table)
-        {
+        Schema::table('rainlab_blog_posts', function ($table) {
             $table->longText('powerblog_delta')->nullable();
         });
     }

@@ -58,10 +58,11 @@ class AvatarUploader extends FormWidgetBase
         try {
             $uploadedFile = Input::file('file');
 
-            if ($uploadedFile)
+            if ($uploadedFile) {
                 $uploadedFileName = $uploadedFile->getClientOriginalName();
+            }
 
-            $validationRules = ['max:'.File::getMaxFilesize()];
+            $validationRules = ['max:' . File::getMaxFilesize()];
             $validationRules[] = 'mimes:jpg,jpeg,bmp,png,gif';
 
             $validation = Validator::make(
@@ -94,10 +95,10 @@ class AvatarUploader extends FormWidgetBase
             $response->send();
 
             die();
-        }
-        catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $message = $uploadedFileName
-                ? Lang::get('cms::lang.asset.error_uploading_file', ['name' => $uploadedFileName, 'error' => $ex->getMessage()])
+                ? Lang::get('cms::lang.asset.error_uploading_file',
+                    ['name' => $uploadedFileName, 'error' => $ex->getMessage()])
                 : $ex->getMessage();
 
             $result = [

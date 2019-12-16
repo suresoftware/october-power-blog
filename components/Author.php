@@ -11,7 +11,7 @@ class Author extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'Author Component',
+            'name' => 'Author Display',
             'description' => 'Adds an author module to the blog post.'
         ];
     }
@@ -30,14 +30,14 @@ class Author extends ComponentBase
     {
         $post = $this->page['post'];
 
-        if(empty($post)) return null;
+        if (empty($post)) {
+            return null;
+        }
 
         $author_id = $post->powerblog_author_id;
         $author = \SureSoftware\PowerBlog\Models\Author::with('avatar')->find($author_id);
 
-        Log::info($author);
-
-        if($author) {
+        if ($author) {
             return $author;
         }
 

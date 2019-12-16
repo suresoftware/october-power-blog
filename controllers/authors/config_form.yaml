@@ -16,16 +16,16 @@ defaultRedirect: suresoftware/powerblog/authors
 
 # Create page
 create:
-    title: Create Author
-    redirect: suresoftware/powerblog/authors/update/:id
-    redirectClose: suresoftware/powerblog/authors
+  title: Create Author
+  redirect: suresoftware/powerblog/authors/update/:id
+  redirectClose: suresoftware/powerblog/authors
 
 # Update page
 update:
-    title: Edit Author
-    redirect: suresoftware/powerblog/authors
-    redirectClose: suresoftware/powerblog/authors
+  title: Edit Author
+  redirect: suresoftware/powerblog/authors
+  redirectClose: suresoftware/powerblog/authors
 
 # Preview page
 preview:
-    title: Preview Author
+  title: Preview Author

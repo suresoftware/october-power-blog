@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <div>
+            <h2>Convert Posts</h2>
+            <p>This tool converts all existing post content to Power Blog deltas.</p>
+            <h3>Backup your posts before Converting</h3>
+            <p>This will download a CSV of all of your posts</p>
+            <button id="backup" class="btn btn-primary">Backup Posts</button>
+            <br>
+            <br>
+            <p id="import-status">Total Posts left to Convert: <span> <?= $posts->count() ?></span></p>
+        </div>
+        <input
+                type="hidden"
+                id="quill-importer"
+        />
+
+        <div class="progress">
+            <div id="progress" class="progress-bar" style="width: 0" role="progressbar" aria-valuenow="0"
+                 aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <button id="import" class="btn btn-primary">Convert Posts</button>
+        <button id="posts" class="btn btn-default" data-link="<?= Backend::url('rainlab/blog/posts') ?>" disabled>Go To
+            Posts
+        </button>
+    </div>
+</div>
+<script>
+    window.posts = <? = $posts ?>;
+</script>
+

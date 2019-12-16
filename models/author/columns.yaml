@@ -3,9 +3,9 @@
 # ===================================
 
 columns:
-    id:
-        label: ID
-        searchable: true
-    name:
-        label: Name
-        searchable: true
+  id:
+    label: ID
+    searchable: true
+  name:
+    label: Name
+    searchable: true
