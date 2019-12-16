@@ -1,8 +1,0 @@
-# ===================================
-#  Form Field Definitions
-# ===================================
-
-fields:
-    importer:
-        label: Importer
-        disabled: true

@@ -1,16 +1,49 @@
 #post-form {
     display: none;
+    max-width: 750px;
 }
 
 #quill-editor {
-    height: 100vh;
+    height: calc(100vh - 440px);
 }
 
-#scrolling-container {
-    overflow-y: auto;
+#Relation-formPowerblogAuthor-powerblog_author {
+    max-width: 750px;
+}
+
+#quill-container {
+    max-width: 750px;
 }
 
 #quill-autosave-indicator {
     display: inline-block;
     float: right;
+    width: 100%;
+    margin-top: 8px;
+    margin-right: 10px;
+    margin-bottom: 8px;
+    font-weight: 700;
+    text-align: right;
+    color: black;
+}
+
+#quill-autosave-indicator.saved {
+    color: #009400;
+}
+
+#quill-autosave-indicator.saving {
+    color: #0000bc;
+}
+
+#quill-autosave-indicator.unsaved {
+    color: #cb0000;
+}
+
+.ql-editor p {
+    font-size: 16px;
+}
+
+.ql-container,
+.ql-snow .ql-editor {
+    font-size: 16px;
 }

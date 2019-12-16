@@ -1,14 +1,14 @@
 /**
  * Override the main editor
  */
-$(document).on('ajaxSuccess', '#post-form', function(event, context, data) {
+$(document).on('ajaxSuccess', '#post-form', function (event, context, data) {
 
     // Hide the old editor
     var tab = $('a[href="#secondarytab-1"]:first');
     tab.parent().remove();
 
     // Show the power blog editor
-    var power = $('a[title="Power Blog"]:first');
+    var power = $('a:contains("Power Blog"):first', '#post-form');
     power.click();
 
     // Move power blog editor to the front of the tag group
@@ -16,7 +16,6 @@ $(document).on('ajaxSuccess', '#post-form', function(event, context, data) {
     item.parent().prepend(item);
 
     $("#post-form").show(200);
-
 });
 
 /**
@@ -24,33 +23,30 @@ $(document).on('ajaxSuccess', '#post-form', function(event, context, data) {
  */
 
 var toolbarOptions = [
-    ['bold', 'italic', 'underline', 'strike'],          // toggled buttons
+    ['bold', 'italic', 'underline', 'strike'],      // toggled buttons
     ['blockquote'],
 
-    [{ 'header': 1 }, { 'header': 2 }],                 // custom button values
-    [{ 'script': 'sub'}, { 'script': 'super' }],        // superscript/subscript
-
-    [{ 'size': ['small', false, 'large', 'huge'] }],    // custom dropdown
-    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-    [ 'link', 'image', 'video', 'formula' ],            // add's image support
-    ['clean']                                           // remove formatting button
+    [{'header': 1}, {'header': 2}],                 // custom button values
+    [{'script': 'sub'}, {'script': 'super'}],       // superscript/subscript
+    [{'header': [1, 2, 3, 4, 5, 6, false]}],
+    ['link', 'image', 'video'],                     // add's image support
+    ['clean']                                       // formatting remove button
 ];
 
-$(document).on('ready', function() {
-
+$(document).on('ready', function () {
     // Ready the Quill editor
     var quill = new Quill('#quill-editor', {
         modules: {
             toolbar: toolbarOptions
         },
-        scrollingContainer: '#scrolling-container',
+        scrollingContainer: '#quill-container',
         placeholder: 'Write something.',
         theme: 'snow'
     });
 
     // Load in existing content
     var preloaded = $('#quill-delta').val();
-    if(preloaded){
+    if (preloaded) {
         preloaded = JSON.parse(preloaded);
         quill.setContents(preloaded, 'api');
     }
@@ -58,8 +54,11 @@ $(document).on('ready', function() {
     // Store accumulated changes
     var Delta = Quill.import('delta');
     var change = new Delta();
-    quill.on('text-change', function(delta) {
-        $('#quill-autosave-indicator').text('Unsaved Changes');
+    var autosaveIndicator = $('#quill-autosave-indicator');
+
+    quill.on('text-change', function (delta) {
+        autosaveIndicator.text('Unsaved Changes');
+        autosaveIndicator.removeClass().addClass('unsaved');
         change = quill.getContents();
         $('#quill-delta').val(JSON.stringify(change));
     });
@@ -68,15 +67,17 @@ $(document).on('ready', function() {
     setInterval(function () {
         if (change.length() > 0) {
             console.log('Saving changes', change);
-            $('#quill-autosave-indicator').text('Saving...');
+            autosaveIndicator.text('Saving...');
+            autosaveIndicator.removeClass().addClass('saving');
 
             // Send entire document
             $.post('/suresoftware/powerblog/quill', {
                 // Get id from slug
                 id: window.location.href.split('/').reverse()[0],
                 doc: JSON.stringify(quill.getContents())
-            }, function() {
-                $('#quill-autosave-indicator').text('Post Saved');
+            }, function () {
+                autosaveIndicator.text('Post Saved');
+                autosaveIndicator.removeClass().addClass('saved');
             });
             change = new Delta();
         }

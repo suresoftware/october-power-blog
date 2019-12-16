@@ -2,30 +2,24 @@
   "name": "suresoftware/powerblog",
   "type": "october-plugin",
   "description": "Power Blog Plugin",
-  "keywords": ["october", "powerblog", "blog", "author", "quill", "custom blog editor", "plugin"],
+  "keywords": [
+    "october",
+    "powerblog",
+    "blog",
+    "author",
+    "quill",
+    "custom blog editor",
+    "plugin"
+  ],
   "license": "MIT",
-
   "authors": [
     {
-      "name": "Nick Humphries",
-      "email": "nick@suresoftware.co.nz",
-      "role": "Director"
-    },
-    {
-      "name": "Emma Campbell",
-      "email": "emma@luminate.one",
-      "role": "Developer"
+      "name": "Sure Software",
+      "email": "info@suresoftware.co.nz"
     }
   ],
   "require": {
     "php": ">=7.0",
-    "deanblackborough/php-quill-renderer": "^3.17"
-
-
-  },
-  "autoload": {
-    "psr-4": {
-
-    }
+    "deanblackborough/php-quill-renderer": "^3.18.1"
   }
 }
