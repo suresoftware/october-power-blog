@@ -1,17 +1,16 @@
 #post-form {
     display: none;
-    max-width: 750px;
 }
 
 #quill-editor {
     height: calc(100vh - 440px);
 }
 
-#Relation-formPowerblogAuthor-powerblog_author {
+#Form-field-Post-powerblog_delta-group {
     max-width: 750px;
 }
 
-#quill-container {
+#Relation-formPowerblogAuthor-powerblog_author {
     max-width: 750px;
 }
 

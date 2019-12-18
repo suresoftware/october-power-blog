@@ -12,3 +12,5 @@
   - 'Cleaned up codebase for public release'
 1.1.1:
   - 'Fixed converter loading posts bug'
+1.1.2:
+  - 'Improved blog editor layout'
