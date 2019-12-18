@@ -10,3 +10,5 @@
   - alter_posts_add_delta.php
 1.1.0:
   - 'Cleaned up codebase for public release'
+1.1.1:
+  - 'Fixed converter loading posts bug'
