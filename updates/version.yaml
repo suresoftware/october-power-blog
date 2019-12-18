@@ -14,3 +14,6 @@
   - 'Fixed converter loading posts bug'
 1.1.2:
   - 'Improved blog editor layout'
+1.1.3:
+  - 'Increased author bio max length'
+  - alter_author_bio_length.php
