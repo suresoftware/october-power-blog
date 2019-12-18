@@ -8,8 +8,11 @@ fields:
     disabled: true
   name:
     label: Name
+  link:
+    label: Link
   bio:
     label: Bio
+    type: textArea
   avatar:
     label: Avatar
     type: fileupload

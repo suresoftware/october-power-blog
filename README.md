@@ -28,6 +28,7 @@ Author Fields:
 * Author Name
 * Author Bio
 * Author Avatar
+* Author Link
 
 ## Using the PowerBlog Post Component
 
