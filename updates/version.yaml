@@ -20,3 +20,7 @@
 1.2.0:
   - 'Added author link field'
   - add_author_link_field.php
+1.2.1:
+  - 'Fixed importing posts with lists, added list modifiers to editor'
+1.2.2:
+  - 'Fixed blog creation bug'
