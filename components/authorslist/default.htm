@@ -4,7 +4,7 @@
     {% for author in __SELF__.authors %}
     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6">
         {% if __SELF__.property('clickable') %}
-            <a href="{{ __SELF__.page|page }}/{{ author.slug }}">
+            <a href="{{ __SELF__.property('page')|page({ slug: author.slug }) }}">
         {% endif %}
 
             <div class="authors-block">
@@ -25,7 +25,7 @@
                         <p>
                             {{ author.bio|split(" ")|slice(0, __SELF__.excerpt)|join(" ") }}
                         </p>
-                        <a href="{{ __SELF__.page|page }}/{{ author.slug }}">
+                        <a href="{{ __SELF__.property('page')|page({ slug: author.slug }) }}">
                             Read More
                         </a>
                     {% endif %}
