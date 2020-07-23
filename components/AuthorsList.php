@@ -58,12 +58,6 @@ class AuthorsList extends ComponentBase
 
     public function getAuthors()
     {
-        $post = $this->page['post'];
-
-        if (empty($post)) {
-            return null;
-        }
-
         $authors = \SureSoftware\PowerBlog\Models\Author::with('avatar')
             ->get();
 

@@ -27,3 +27,5 @@
 1.3.4:
   - 'Added Authors List and Author Page Display Component'
   - alter_author_add_slug.php
+1.3.5:
+  - 'Fixed Author List Component Bug'
