@@ -1,0 +1,39 @@
+{% set author = __SELF__.author %}
+
+<div class="row">
+    {% for author in __SELF__.authors %}
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6">
+        {% if __SELF__.property('clickable') %}
+            <a href="{{ __SELF__.page|page }}/{{ author.slug }}">
+        {% endif %}
+
+            <div class="authors-block">
+                <div class="author-image">
+                    <img src="{{ author.avatar.path }}" alt="{{ author.avatar.description }}">
+                </div>
+
+                <div class="authors-content">
+                    <h4>{{ author.name }}</h4>
+                </div>
+
+                <div class="authors-text">
+                    {% if __SELF__.property('clickable') == false %}
+                        <p>
+                            {{ author.bio }}
+                        </p>
+                    {% else %}
+                        <p>
+                            {{ author.bio|split(" ")|slice(0, __SELF__.excerpt)|join(" ") }}
+                        </p>
+                        <a href="{{ __SELF__.page|page }}/{{ author.slug }}">
+                            Read More
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        {% if __SELF__.property('clickable') %}
+            </a>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>

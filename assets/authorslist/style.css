@@ -1,0 +1,32 @@
+.author-image{
+    width: 180px;
+    height: 180px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.author-image.author-image-lg{
+    width: 250px;
+    height: 250px;
+}
+
+.author-image img{
+    width: 100%;
+    min-height: 100%;
+}
+
+.authors-content{
+    text-align: center;
+    color: black;
+}
+
+.authors-text{
+    text-align: center;
+}
+
+.authors-text a p{
+    padding-bottom: 10px;
+}
