@@ -10,6 +10,8 @@ fields:
     label: Name
   link:
     label: Link
+  slug:
+    label: Slug
   bio:
     label: Bio
     type: textArea

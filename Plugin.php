@@ -91,7 +91,9 @@ class Plugin extends PluginBase
     {
         return [
             'SureSoftware\PowerBlog\Components\Author' => 'Author',
-            'SureSoftware\PowerBlog\Components\Post' => 'Post'
+            'SureSoftware\PowerBlog\Components\AuthorsList' => 'AuthorsList',
+            'SureSoftware\PowerBlog\Components\AuthorFullDetails' => 'AuthorFullDetails',
+            'SureSoftware\PowerBlog\Components\Post' => 'Post',
         ];
     }
 

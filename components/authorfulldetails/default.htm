@@ -1,0 +1,19 @@
+{% set author = __SELF__.author %}
+
+<div class="col-xl-4 col-xl-offset-4 col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-12">
+    <div class="authors-block">
+        <div class="author-image author-image-lg">
+            <img src="{{ author.avatar.path }}" alt="{{ author.avatar.description }}">
+        </div>
+
+        <div class="authors-content">
+            <h2>{{ author.name }}</h2>
+        </div>
+
+        <div class="authors-text">
+            <p>
+                {{ author.bio }}
+            </p>
+        </div>
+    </div>
+</div>
