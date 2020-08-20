@@ -31,3 +31,5 @@
   - 'Fixed Author List Component Bug'
 1.3.6:
   - 'Fixed dynamic slug linking'
+1.4.0:
+  - 'Added public API endpoint for returning blog post excerpt.'
