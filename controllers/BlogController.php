@@ -1,6 +1,7 @@
 <?php namespace SureSoftware\PowerBlog\Controllers;
 
 use Illuminate\Routing\Controller;
+use Illuminate\Http\Request;
 use Rainlab\Blog\Models\Post;
 use SureSoftware\PowerBlog\Models\Settings;
 
@@ -10,21 +11,24 @@ use SureSoftware\PowerBlog\Models\Settings;
 class BlogController extends Controller
 {
     /**
-     * Return latest 3 blog posts.
+     * Return blog posts in published date order.
+     * As part of API request can pass limit, default limit is 10.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getPublished()
+    public function getPublished(Request $request)
     {
         // Check whether API is enabled.
         if (Settings::get('enable_api', false) != true) {
             return response()->json('Currently unavailable.', 404);
         }
 
-        // Return the latest 3 blog posts
+        // Set number of posts to return. Default is 10
+        $postLimit = $request->limit ? $request->limit : 10;
+
         $posts = Post::isPublished()
             ->orderBy('published_at', 'DESC')
-            ->limit(3)
+            ->limit($postLimit)
             ->get();
 
 
