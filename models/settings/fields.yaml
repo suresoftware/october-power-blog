@@ -1,0 +1,13 @@
+fields:
+    enable_api:
+        span: left
+        label: 'Enable API'
+        comment: 'Public API for returning blog posts'
+        type: switch
+        default: 0
+    blog_page_slug:
+        span: left
+        label: 'Blog Page Base URL'
+        comment: 'Used when returning slug via API'
+        type: text
+        default: 'blog'

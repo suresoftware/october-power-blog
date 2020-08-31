@@ -120,7 +120,18 @@ class Plugin extends PluginBase
 
     public function registerSettings()
     {
-        return [];
+        return [
+            'blog' => [
+                'label' => 'Power Blog',
+                'description' => 'Manage blog settings.',
+                'category' => 'misc',
+                'icon' => 'icon-pencil',
+                'class' => 'SureSoftware\PowerBlog\Models\Settings',
+                'order' => 500,
+                'keywords' => 'blog post category',
+                'permissions' => []
+            ]
+        ];
     }
 
     /**
