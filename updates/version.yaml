@@ -33,3 +33,5 @@
   - 'Fixed dynamic slug linking'
 1.4.0:
   - 'Added public API endpoint for returning blog post excerpt.'
+1.4.1:
+  - 'Changed blog api limit from using Laravel magic method for limit to using input method.'

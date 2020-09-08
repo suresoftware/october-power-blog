@@ -24,7 +24,7 @@ class BlogController extends Controller
         }
 
         // Set number of posts to return. Default is 10
-        $postLimit = $request->limit ? $request->limit : 10;
+        $postLimit = $request->input('limit') ? $request->input('limit') : 10;
 
         $posts = Post::isPublished()
             ->orderBy('published_at', 'DESC')
