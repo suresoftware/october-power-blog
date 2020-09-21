@@ -61,18 +61,6 @@ class Post extends ComponentBase
         if (empty($this->post)) {
             $this->post = $this->page['post'] = $this->loadPost();
         }
-
-        // PHP Quill Renderer
-        if (!empty($this->post->powerblog_delta)) {
-            try {
-                $parser = new HtmlParser();
-                $renderer = new RenderHtml();
-                $parser->load($this->post->powerblog_delta)->parse();
-            } catch (\Exception $e) {
-                echo $e->getMessage();
-            }
-            $this->post->html_content = $renderer->load($parser->deltas())->render();
-        }
     }
 
 
@@ -99,6 +87,20 @@ class Post extends ComponentBase
             $post->categories->each(function ($category) {
                 $category->setUrl($this->categoryPage, $this->controller);
             });
+        }
+
+        /*
+         * PHP Quill Renderer
+         */
+        if (!empty($post->powerblog_delta)) {
+            try {
+                $parser = new HtmlParser();
+                $renderer = new RenderHtml();
+                $parser->load($post->powerblog_delta)->parse();
+            } catch (\Exception $e) {
+                echo $e->getMessage();
+            }
+            $post->html_content = $renderer->load($parser->deltas())->render();
         }
 
         return $post;

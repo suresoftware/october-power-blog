@@ -35,3 +35,5 @@
   - 'Added public API endpoint for returning blog post excerpt.'
 1.4.1:
   - 'Changed blog api limit from using Laravel magic method for limit to using input method.'
+1.4.2:
+  - 'Fixed issue with html_content parameter not being set when using onRun'
